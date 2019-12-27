@@ -1,0 +1,15 @@
+.mainContainer {
+    margin-top: 15px;;
+}
+
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+   }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  
