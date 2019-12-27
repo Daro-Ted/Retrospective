@@ -1,0 +1,27 @@
+.mainContainer{
+    width:850px;
+    height: 850px;
+}
+.header{
+    width:100%;
+}
+
+.addCommentContainer {
+    margin-top: 40px;;
+} 
+
+.custom{
+    padding-left:20px ;
+}
+
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+   }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  

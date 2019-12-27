@@ -1,0 +1,83 @@
+<div class="mainContainer">
+        <div  class="header bg-primary text-light card-body ">
+             <p>Event Details</p>
+        </div>
+        <div mat-card-content class="contentContainer">
+            <div class="detailsContainer card-body">
+                    <h2>Name: {{retrospective.Name}}</h2>
+                    <p> <strong>Summary:</strong> {{retrospective.Summary}}</p>
+                    <p> <strong>Participants:</strong> {{retrospective.Participants}}</p>
+                    <p> <strong>Date:</strong> {{retrospective.Date}}</p>
+            </div>
+            <div class="commentContainer">
+                <p class="custom"> <strong>Comments:</strong></p>
+                 <div class="card" *ngFor="let item of retrospective.Feedbacks">
+                     <div class="card-body">
+                         <h5 mat-card-title>Name: {{item.Name}}</h5>
+                         <p>Comment: {{item.Body}}</p>
+                         <span>Outcome: {{item.Types}}</span>
+                     </div>
+                 </div>
+            </div>
+        </div>
+
+        <div class="addCommentContainer">
+            <h3 class="card-body">Add a comment</h3>
+                <form class="form-horizontal" novalidate (ngSubmit)="CreateFeedback(retrospective.Id)" [formGroup]="feedbackForm">
+                        <div class="formcontainer">                       
+                                <div class="form-group" [ngClass]="{'has-error': ((feedbackForm.get('Name').touched || feedbackForm.get('Name').dirty) && !feedbackForm.get('Name').valid)}">
+                                        <div class="col-md-12 example-container">
+                                            <mat-form-field>
+                                            <input  matInput id="nameId" type="text" placeholder="Name is (required)" formControlName="Name"
+                                            />
+                                            </mat-form-field>
+                                            <span class="help-block" *ngIf="(feedbackForm.get('Name').touched ||feedbackForm.get('Name').dirty) && feedbackForm.get('Name').errors">
+                                            <span ng-class="ng-invalid"  *ngIf="feedbackForm.get('Name').errors.required">
+                                                Please enter a name.
+                                            </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" [ngClass]="{'has-error': ((feedbackForm.get('Body').touched || feedbackForm.get('Body').dirty) && !feedbackForm.get('Body').valid)}">
+                                            <div class="col-md-12 example-container">
+                                                <mat-form-field>
+                                                <textarea   matInput id="BodyId" type="text" placeholder="Body is (required)" formControlName="Body"
+                                                ></textarea>
+                                            </mat-form-field>
+                                                <span class="help-block" *ngIf="(feedbackForm.get('Body').touched ||feedbackForm.get('Body').dirty) && feedbackForm.get('Body').errors">
+                                                <span ng-class="ng-invalid"  *ngIf="feedbackForm.get('Body').errors.required">
+                                                    Please enter a comment.
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" [ngClass]="{'has-error': ((feedbackForm.get('Types').touched || feedbackForm.get('Types').dirty) && !feedbackForm.get('Types').valid)}">
+                                                <div class="col-md-12 example-container">
+                                                    <mat-form-field>
+                                                    <input  matInput id="ParticipantId" type="text" placeholder="Type is (required)" formControlName="Types"
+                                                    />
+                                                </mat-form-field>
+                                                    <span class="help-block" *ngIf="(feedbackForm.get('Types').touched ||feedbackForm.get('Types').dirty) && feedbackForm.get('Types').errors">
+                                                    <span ng-class="ng-invalid"  *ngIf="feedbackForm.get('Types').errors.required">
+                                                        Please enter a Type.
+                                                    </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                                                         
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2  btn-group">
+                                            <span>
+                                          <button  type="submit" class="btn btn-info" [disabled]="!feedbackForm.valid">
+                                              Add Comment
+                                          </button>
+                                          <button class="btn btn-danger" mat-dialog-close>Cancel</button>
+                                       </span>
+                                        </div>
+                                    </div>
+                        </div>
+                </form>
+        </div>
+    </div>
+    
+
